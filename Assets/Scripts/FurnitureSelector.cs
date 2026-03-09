@@ -13,7 +13,7 @@ public class FurnitureSelector : MonoBehaviour
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         RaycastHit2D hit = Physics2D.Raycast(mousePos, Vector2.zero);
-        if (hit.collider != null)
+        if (hit.collider != null && hit.collider.gameObject.CompareTag("Furniture"))
         {
             if (currentSelectedFurniture == hit.collider.gameObject) //deselect when selecting an already selected furniture
             {

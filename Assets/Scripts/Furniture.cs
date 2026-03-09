@@ -11,7 +11,7 @@ public class Furniture : MonoBehaviour
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y);
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.1f); //set z to y for vertical sprite sorting
     }
 
     public FurnitureObject GetFurnitureObject()
@@ -40,13 +40,13 @@ public class Furniture : MonoBehaviour
         if (!isSelected) return;
 
         Vector2 input = default;
-        input.x = Input.GetAxis("Horizontal");
-        input.y = Input.GetAxis("Vertical");
+        input.x = Input.GetAxisRaw("Horizontal");
+        input.y = Input.GetAxisRaw("Vertical");
         input.Normalize();
 
         transform.position = new Vector3(transform.position.x + input.x * moveSpeed * Time.deltaTime, 
             transform.position.y + input.y * moveSpeed * Time.deltaTime, 
-            transform.position.y * 0.1f); //set z to y as well for vertical sprite sorting
+            transform.position.y * 0.1f);
 
 
     }

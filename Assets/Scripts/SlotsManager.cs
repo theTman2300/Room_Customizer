@@ -6,7 +6,7 @@ using Newtonsoft.Json;
 
 public class SlotsManager : MonoBehaviour
 {
-    [SerializeField] Slot[] slots;
+    public Slot[] Slots;
 
     string path = "";
 
@@ -19,13 +19,15 @@ public class SlotsManager : MonoBehaviour
     [Button]
     void LoadSlots()
     {
-        slots = JsonConvert.DeserializeObject<Slot[]>(File.ReadAllText(path));
+        Slots = JsonConvert.DeserializeObject<Slot[]>(File.ReadAllText(path));
+        print("slots loaded");
     }
 
     [Button]
     void SaveSlots()
     {
-        string json = JsonConvert.SerializeObject(slots, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(Slots, Formatting.Indented);
+        print("Slots saved");
         print(json);
         File.WriteAllText(path, json);
     }

@@ -45,6 +45,7 @@ public class SlotsManager : MonoBehaviour
     public void RemoveSlot(Slot slot)
     {
         Slots.Remove(slot);
+        File.Delete(slot.Path);
     }
 
     public Slot[] GetSlots()

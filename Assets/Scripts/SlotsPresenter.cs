@@ -13,6 +13,7 @@ public class SlotsPresenter : MonoBehaviour
     [SerializeField] Transform SlotUIPosition;
     [Space]
     [SerializeField] TextMeshProUGUI modeText;
+    [SerializeField] GameObject errorText;
 
     bool menuShown = false;
     SlotsManager slotsManager;
@@ -40,6 +41,7 @@ public class SlotsPresenter : MonoBehaviour
     void HideMenu()
     {
         SlotUI.gameObject.SetActive(false);
+        errorText.SetActive(false);
         for (int i = 0; i < SlotUIPosition.transform.childCount; i++)
         {
             Destroy(SlotUIPosition.transform.GetChild(i).gameObject);
@@ -85,8 +87,10 @@ public class SlotsPresenter : MonoBehaviour
         if (File.Exists(Application.persistentDataPath + "/Slots/" + name.text + ".JSON"))
         {
             print("File already exists, canceling save");
+            errorText.SetActive(true);
             return;
         }
+        errorText.SetActive(false);
 
         Slot newSlot = new Slot();
         newSlot.name = name.text;

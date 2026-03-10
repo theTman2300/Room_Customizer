@@ -17,6 +17,9 @@ public class SlotsManager : MonoBehaviour
     {
         path = Application.persistentDataPath + "/Slots.JSON";
         print(path);
+
+        if (!File.Exists(path)) SaveSlots();
+
         LoadSlots();
     }
 

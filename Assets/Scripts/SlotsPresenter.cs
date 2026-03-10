@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -60,5 +61,29 @@ public class SlotsPresenter : MonoBehaviour
     public void SlotClicked(Slot slot)
     {
         saveLoadRoom.LoadRoom(slot);
+    }
+
+    public void SaveNew(TMP_InputField name)
+    {
+        print(name.text);
+        if (File.Exists(Application.persistentDataPath + "/Slots/" + name.text + ".JSON"))
+        {
+            print("File already exists, canceling save");
+            return;
+        }
+
+        Slot newSlot = new Slot();
+        newSlot.name = name.text;
+        newSlot.Path = Application.persistentDataPath + "/Slots/" + name.text + ".JSON";
+        saveLoadRoom.SaveRoom(newSlot);
+        slotsManager.AddSlot(newSlot);
+
+        //save new slot
+        slotsManager.SaveSlots();
+        slotsManager.LoadSlots(); //not sure if the loading is necessary, but it can't hurt
+
+        //refresh menu
+        HideMenu();
+        ShowMenu();
     }
 }

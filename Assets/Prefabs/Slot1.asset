@@ -12,5 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8dabab54725ae6489db86ff8bb37e3e, type: 3}
   m_Name: Slot1
   m_EditorClassIdentifier: Assembly-CSharp::Slot
-  ID: 0
-  Path: Your mother
+  Path: C:\Users\prins\AppData\LocalLow\DefaultCompany\RoomCustomizer\Slots\Slot0.JSON

@@ -3,10 +3,13 @@ using System;
 using System.IO;
 using UnityEngine;
 using Newtonsoft.Json;
+using NUnit.Framework;
+using System.Collections.Generic;
+using System.Linq;
 
 public class SlotsManager : MonoBehaviour
 {
-    [SerializeField] Slot[] Slots;
+    [SerializeField] List<Slot> Slots;
 
     string path = "";
 
@@ -17,25 +20,28 @@ public class SlotsManager : MonoBehaviour
         LoadSlots();
     }
 
-    [Button]
-    void LoadSlots()
+    public void LoadSlots()
     {
-        Slots = JsonConvert.DeserializeObject<Slot[]>(File.ReadAllText(path));
+        Slots = JsonConvert.DeserializeObject<Slot[]>(File.ReadAllText(path)).ToList();
         print("slots loaded");
     }
 
-    [Button]
-    void SaveSlots()
+    public void SaveSlots()
     {
-        string json = JsonConvert.SerializeObject(Slots, Formatting.Indented);
+        string json = JsonConvert.SerializeObject(Slots.ToArray(), Formatting.Indented);
         print("Slots saved");
         print(json);
         File.WriteAllText(path, json);
     }
 
+    public void AddSlot(Slot slot)
+    {
+        Slots.Add(slot);
+    }
+
     public Slot[] GetSlots()
     {
-        return Slots;
+        return Slots.ToArray();
     }
 }
 

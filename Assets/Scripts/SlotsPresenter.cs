@@ -11,10 +11,15 @@ public class SlotsPresenter : MonoBehaviour
     [SerializeField] float padding = 50;
     [SerializeField] GameObject SlotUI;
     [SerializeField] Transform SlotUIPosition;
+    [Space]
+    [SerializeField] TextMeshProUGUI modeText;
 
     bool menuShown = false;
     SlotsManager slotsManager;
     SaveLoadRoom saveLoadRoom;
+
+    public enum mode { loading, saving, deleting}
+    mode interactionMode = mode.loading;
 
     private void Start()
     {
@@ -35,9 +40,9 @@ public class SlotsPresenter : MonoBehaviour
     void HideMenu()
     {
         SlotUI.gameObject.SetActive(false);
-        for (int i = 0; i < transform.childCount; i++)
+        for (int i = 0; i < SlotUIPosition.transform.childCount; i++)
         {
-            Destroy(transform.GetChild(i).gameObject);
+            Destroy(SlotUIPosition.transform.GetChild(i).gameObject);
         }
     }
 
@@ -60,7 +65,18 @@ public class SlotsPresenter : MonoBehaviour
 
     public void SlotClicked(Slot slot)
     {
-        saveLoadRoom.LoadRoom(slot);
+        switch (interactionMode) 
+        {
+            case mode.loading:
+                saveLoadRoom.LoadRoom(slot);
+                break;
+            case mode.saving:
+                saveLoadRoom.SaveRoom(slot);
+                break;
+            case mode.deleting:
+                DeleteSlot(slot);
+                break;
+        }
     }
 
     public void SaveNew(TMP_InputField name)
@@ -85,5 +101,36 @@ public class SlotsPresenter : MonoBehaviour
         //refresh menu
         HideMenu();
         ShowMenu();
+    }
+
+    void DeleteSlot(Slot slot)
+    {
+        slotsManager.RemoveSlot(slot);
+
+        //save new slot
+        slotsManager.SaveSlots();
+        slotsManager.LoadSlots(); //not sure if the loading is necessary, but it can't hurt
+
+        //refresh menu
+        HideMenu();
+        ShowMenu();
+    }
+
+    public void OnLoadModePressed()
+    {
+        interactionMode = mode.loading;
+        modeText.text = "Mode: Loading"; 
+    }
+
+    public void OnSaveModePressed()
+    {
+        interactionMode = mode.saving;
+        modeText.text = "Mode: Saving";
+    }
+
+    public void OnDeleteModePressed()
+    {
+        interactionMode = mode.deleting;
+        modeText.text = "Mode: Deleting";
     }
 }

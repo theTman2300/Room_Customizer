@@ -39,6 +39,11 @@ public class SlotsManager : MonoBehaviour
         Slots.Add(slot);
     }
 
+    public void RemoveSlot(Slot slot)
+    {
+        Slots.Remove(slot);
+    }
+
     public Slot[] GetSlots()
     {
         return Slots.ToArray();

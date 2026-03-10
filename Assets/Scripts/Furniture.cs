@@ -5,6 +5,9 @@ public class Furniture : MonoBehaviour
     [SerializeField] public FurnitureType.type furnitureType;
     [SerializeField] float moveSpeed = 1;
     [SerializeField] bool isSelected;
+    [Space]
+    [SerializeField] KeyCode sprintKey = KeyCode.LeftShift;
+    [SerializeField] float sprintSpeedMulitplier = 3;
 
     SpriteRenderer spriteRenderer;
 
@@ -51,8 +54,11 @@ public class Furniture : MonoBehaviour
         input.y = Input.GetAxisRaw("Vertical");
         input.Normalize();
 
-        transform.position = new Vector3(transform.position.x + input.x * moveSpeed * Time.deltaTime, 
-            transform.position.y + input.y * moveSpeed * Time.deltaTime, 
+        float speed = moveSpeed;
+        if (Input.GetKey(sprintKey)) speed *= sprintSpeedMulitplier;
+
+        transform.position = new Vector3(transform.position.x + input.x * speed * Time.deltaTime, 
+            transform.position.y + input.y * speed * Time.deltaTime, 
             transform.position.y * 0.1f);
 
 

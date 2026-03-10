@@ -29,9 +29,9 @@ public class SlotsManager : MonoBehaviour
     public void SaveSlots()
     {
         string json = JsonConvert.SerializeObject(Slots.ToArray(), Formatting.Indented);
-        print("Slots saved");
         print(json);
         File.WriteAllText(path, json);
+        print("Slots saved");
     }
 
     public void AddSlot(Slot slot)

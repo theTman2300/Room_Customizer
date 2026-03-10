@@ -5,6 +5,6 @@ using UnityEngine;
 [Serializable]
 public class FurnitureObject : ScriptableObject
 {
-    public Vector3 FurniturePosition;
+    public float[] FurniturePosition;
     public FurnitureType.type furnitureType;
 }

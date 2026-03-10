@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Furniture
   - SaveLoadRoom
+  - SlotsManager
   layers:
   - Default
   - TransparentFX

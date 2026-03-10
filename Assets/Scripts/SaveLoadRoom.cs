@@ -33,15 +33,25 @@ public class SaveLoadRoom : MonoBehaviour
             furnitureObjects[i] = furniture[i].GetFurnitureObject();
         }
 
+        if (!Directory.Exists(Application.persistentDataPath + "/Slots"))
+        {
+            Directory.CreateDirectory(Application.persistentDataPath + "/Slots");
+        }
+
         string json = JsonConvert.SerializeObject(furnitureObjects, Formatting.Indented);
-        print("Room saved");
         print(json);
         File.WriteAllText(slot.Path, json);
+        print("Room saved");
     }
 
     public void LoadRoom(Slot slot)
     {
         isLoading = true;
+        foreach (GameObject existingFurniture in GameObject.FindGameObjectsWithTag("Furniture"))
+        {
+            Destroy(existingFurniture);
+        }
+
         FurnitureObject[] furnitureObjects = JsonConvert.DeserializeObject<FurnitureObject[]>(File.ReadAllText(slot.Path));
 
         //create a dictionary to easily look up prefab
@@ -52,9 +62,12 @@ public class SaveLoadRoom : MonoBehaviour
             furnitureDictionary.Add(prefabs[i].type, prefabs[i].prefab);
         }
 
+        furniture.Clear();
         foreach (FurnitureObject furnitureObject in furnitureObjects)
         {
-            Instantiate(furnitureDictionary[FurnitureType.type.chair], furnitureObject.FurniturePosition, Quaternion.identity);
+            Instantiate(furnitureDictionary[furnitureObject.furnitureType], 
+                new Vector3(furnitureObject.FurniturePosition[0], furnitureObject.FurniturePosition[1], furnitureObject.FurniturePosition[2]), 
+                Quaternion.identity);
         }
         isLoading = false;
     }

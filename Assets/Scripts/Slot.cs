@@ -5,6 +5,5 @@ using UnityEngine;
 [Serializable]
 public class Slot : ScriptableObject
 {
-    public int ID;
     public string Path;
 }

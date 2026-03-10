@@ -19,7 +19,7 @@ public class Furniture : MonoBehaviour
     {
         FurnitureObject furnitureObject = ScriptableObject.CreateInstance<FurnitureObject>();
         furnitureObject.furnitureType = furnitureType;
-        furnitureObject.FurniturePosition = transform.position;
+        furnitureObject.FurniturePosition = new float[3] { transform.position.x, transform.position.y, transform.position.z};
         return furnitureObject;
     }
 
@@ -61,5 +61,6 @@ public class Furniture : MonoBehaviour
     void DeleteFurniture()
     {
         GameObject.FindWithTag("SaveLoadRoom").GetComponent<SaveLoadRoom>().RemoveFurniture(this);
+        Destroy(gameObject);
     }
 }

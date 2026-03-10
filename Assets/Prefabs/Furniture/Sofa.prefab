@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8668571817305821045}
   - component: {fileID: 6317626617053110474}
   m_Layer: 0
-  m_Name: Chair
+  m_Name: Sofa
   m_TagString: Furniture
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -81,10 +81,10 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.8773585, g: 0.73534286, b: 0.51731044, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 90fcb4c7a339e8743b274291cdeb8a70, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -108,6 +108,8 @@ MonoBehaviour:
   furnitureType: 0
   moveSpeed: 1
   isSelected: 0
+  sprintKey: 304
+  sprintSpeedMulitplier: 3
 --- !u!61 &6317626617053110474
 BoxCollider2D:
   m_ObjectHideFlags: 0

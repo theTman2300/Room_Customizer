@@ -51,6 +51,7 @@ public class SlotsPresenter : MonoBehaviour
     void ShowMenu()
     {
         SlotUI.gameObject.SetActive(true);
+        errorText.SetActive(false);
         Slot[] slots = slotsManager.GetSlots();
         for (int i = 0; i < slots.Length; i++)
         {

@@ -12,6 +12,7 @@ public class Furniture : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.y * 0.1f); //set z to y for vertical sprite sorting
+        GameObject.FindWithTag("SaveLoadRoom").GetComponent<SaveLoadRoom>().AddFurniture(this);
     }
 
     public FurnitureObject GetFurnitureObject()
@@ -39,6 +40,12 @@ public class Furniture : MonoBehaviour
     {
         if (!isSelected) return;
 
+        if (Input.GetKeyUp(KeyCode.Delete) || Input.GetKeyUp(KeyCode.Backspace))
+        {
+            DeleteFurniture();
+            return;
+        }
+
         Vector2 input = default;
         input.x = Input.GetAxisRaw("Horizontal");
         input.y = Input.GetAxisRaw("Vertical");
@@ -49,5 +56,10 @@ public class Furniture : MonoBehaviour
             transform.position.y * 0.1f);
 
 
+    }
+
+    void DeleteFurniture()
+    {
+        GameObject.FindWithTag("SaveLoadRoom").GetComponent<SaveLoadRoom>().RemoveFurniture(this);
     }
 }

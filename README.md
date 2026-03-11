@@ -18,6 +18,8 @@ Save menu:
 - Menu below that switches modes. Save mode overwrites a slot with the current room. Load mode loads a room and delete mode deletes a save file.
 - Slots will show up in the middle of the screen. Click on them to do the action selected in the previous menu
 
+Close by using alt + f4
+
 # Devlog
 ## Summary
 This project tought me a lot about how to implement saving in Unity. I planned the code structure ahead of time after learning some stuff about JSONUtility. While implementing I relialised that this api did not have everything I needed and switched to using JsonConvert by NewtonSoft. From there on out implementing went pretty smoothly. In the end, I am happy with the results and it functions as I hoped it would at the beginning.

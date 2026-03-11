@@ -19,6 +19,9 @@ Save menu:
 - Slots will show up in the middle of the screen. Click on them to do the action selected in the previous menu
 
 # Devlog
+## Summary
+This project tought me a lot about how to implement saving in Unity. I planned the code structure ahead of time after learning some stuff about JSONUtility. While implementing I relialised that this api did not have everything I needed and switched to using JsonConvert by NewtonSoft. From there on out implementing went pretty smoothly. In the end, I am happy with the results and it functions as I hoped it would at the beginning.
+
 ## Introduction
 In this devlog I am going to be talking about the proces of creating a simple room customization game in unity. This project is being made to learn about saving data in unity, instead of having to restart from scratch every time you launch the project. In this project I want to add some very simple room customization tools, because the focus is mostly on the saving. I also want multiple save files and some simple save file management. 
 
@@ -66,4 +69,4 @@ Since this is more of a technical project, the playtests weren’t very intensiv
 From the playtest I also found that the movement of furniture in my game could be improved by allowing players to drag furniture instead of using wasd, however I decided that since that is not the focus of the project and it would require a lot of work to change that mechanic, the way it is now is fine.
 
 ## Reflection
-This project went very well and was fun to make. I have learned a lot on how to save. I could have done a different approach to saving where instead of saving slots with a reference to a save file, I instead read what save files are in a location. That would have the upside of having less files, while what I have now has the upside of save files being able to be anywhere. This is something I should consider if I do this again. 
+This project went very well and was fun to make. I have learned a lot on how to save. I could have done a different approach to saving where instead of saving slots with a reference to a save file, I instead read what save files are in a location. That would have the upside of having less files, while what I have now has the upside of save files being able to be anywhere. This is something I should consider if I do this again. Planning the code structure ahead of time using UML is not something I had done before very often, and it was more helpful than I expected. This is something I should do more in the future.

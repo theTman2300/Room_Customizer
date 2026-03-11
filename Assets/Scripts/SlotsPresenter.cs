@@ -84,8 +84,9 @@ public class SlotsPresenter : MonoBehaviour
 
     public void SaveNew(TMP_InputField name)
     {
-        print(name.text);
-        if (File.Exists(Application.persistentDataPath + "/Slots/" + name.text + ".JSON"))
+        string slotName = name.text == "" ? "defaultSlot" : name.text;
+        print("new slot: " + slotName);
+        if (File.Exists(Application.persistentDataPath + "/Slots/" + slotName + ".JSON"))
         {
             print("File already exists, canceling save");
             errorText.SetActive(true);
@@ -94,8 +95,8 @@ public class SlotsPresenter : MonoBehaviour
         errorText.SetActive(false);
 
         Slot newSlot = new Slot();
-        newSlot.name = name.text;
-        newSlot.Path = Application.persistentDataPath + "/Slots/" + name.text + ".JSON";
+        newSlot.name = slotName;
+        newSlot.Path = Application.persistentDataPath + "/Slots/" + slotName + ".JSON";
         saveLoadRoom.SaveRoom(newSlot);
         slotsManager.AddSlot(newSlot);
 
